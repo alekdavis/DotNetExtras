@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>DotNetExtras.Common</AssemblyName>
+    <RootNamespace>DotNetExtras</RootNamespace>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageId>DotNetExtras.Common</PackageId>
+    <Title>DotNetExtras.Common</Title>
+    <Version>0.0.0</Version>
+    <Authors>Alek Davis</Authors>
+    <Description>Common .NET utilities shared across multiple projects.</Description>
+    <Copyright>© 2025 Alek Davis</Copyright>
+    <PackageProjectUrl>https://github.com/alekdavis/DotNetExtras.Common</PackageProjectUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/alekdavis/DotNetExtras.git</RepositoryUrl>
+    <PackageTags>.net;utilities;helpers;library;classes;tools;toolbox</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Update="README.md">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>
