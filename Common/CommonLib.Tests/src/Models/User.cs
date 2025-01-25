@@ -1,6 +1,8 @@
 ﻿namespace CommonLibTests.Models;
 internal class User
 {
+    internal int? Age { get; set; }
+
     internal string? Id { get; set; }
 
     internal string? Mail { get; set; }

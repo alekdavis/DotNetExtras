@@ -1,6 +1,6 @@
-﻿using DotNetExtras.Collections;
+﻿using DotNetExtras.Extensions;
 
-namespace CommonLibTests.Collections;
+namespace CommonLibTests.Extensions;
 public class CollectionExtensionsTests
 {
     [Fact]

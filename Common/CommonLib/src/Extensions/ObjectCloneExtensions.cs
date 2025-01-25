@@ -12,9 +12,8 @@ namespace DotNetExtras.Extensions;
 public static class ObjectCloneExtensions
 {
     #region Private members
-    private static readonly MethodInfo? CloneMethod =
-typeof(object).GetMethod("MemberwiseClone",
-    BindingFlags.NonPublic | BindingFlags.Instance);
+    private static readonly MethodInfo? CloneMethod = typeof(object).GetMethod("MemberwiseClone",
+        BindingFlags.NonPublic | BindingFlags.Instance);
     #endregion
 
     #region Public methods

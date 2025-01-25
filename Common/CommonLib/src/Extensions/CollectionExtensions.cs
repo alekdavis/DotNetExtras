@@ -1,6 +1,6 @@
 ﻿using System.Collections;
 
-namespace DotNetExtras.Collections;
+namespace DotNetExtras.Extensions;
 
 /// <summary>
 /// Implements extension methods applicable to collections.

@@ -41,7 +41,7 @@ public class AssemblyInfoTests
     }
 
     [Fact]
-    public void Version_ShouldReturnAssemblyFileVersion()
+    public void Version()
     {
         string? version = AssemblyInfo.Version;
         Assert.NotNull(version);
@@ -49,7 +49,7 @@ public class AssemblyInfoTests
     }
 
     [Fact]
-    public void GetAssembly_ShouldReturnCurrentAssembly()
+    public void GetAssembly()
     {
         var assembly = AssemblyInfo.GetAssembly();
 
