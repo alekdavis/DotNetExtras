@@ -13,7 +13,7 @@
     <Authors>Alek Davis</Authors>
     <Description>Common .NET utilities shared across multiple projects.</Description>
     <Copyright>© 2025 Alek Davis</Copyright>
-    <PackageProjectUrl>https://github.com/alekdavis/DotNetExtras.Common</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/alekdavis/DotNetExtras/Common</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/alekdavis/DotNetExtras.git</RepositoryUrl>
     <PackageTags>.net;utilities;helpers;library;classes;tools;toolbox</PackageTags>
@@ -25,6 +25,10 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="src\Operations\" />
   </ItemGroup>
 
 </Project>

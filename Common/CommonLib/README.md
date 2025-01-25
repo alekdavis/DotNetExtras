@@ -1,4 +1,5 @@
 ﻿# DotNetExtras.Common Library
+
 The DotNetExtras.Common library provides a collection of versatile utilities designed for use across various projects implemented in .NET 8.
 
 The library implements the following classes and methods:
