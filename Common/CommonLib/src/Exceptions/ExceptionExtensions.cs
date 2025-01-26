@@ -1,4 +1,4 @@
-﻿using DotNetExtras.Text;
+﻿using DotNetExtras.Extensions;
 using System.Reflection;
 using System.Text;
 

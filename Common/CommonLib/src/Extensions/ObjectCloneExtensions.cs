@@ -47,7 +47,7 @@ public static class ObjectCloneExtensions
         this object original
     )
     {
-        return Copy(original, new Dictionary<object, object>(new ReferenceEqualityComparer()));
+        return Copy(original, new Dictionary<object, object>(new Utilities.ReferenceEqualityComparer()));
     }
     #endregion
 

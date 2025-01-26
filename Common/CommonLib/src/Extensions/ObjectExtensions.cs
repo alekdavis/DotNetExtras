@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Dynamic;
 using System.Reflection;
 
 namespace DotNetExtras.Extensions;
@@ -87,42 +88,63 @@ public static class ObjectExtensions
         object? value
     )
     {
-        if (value == null)
-        {
-            return true;
-        }
-        
-        if (value is string)
-        {
-            return false;
-        }
-        
-        if (value is ICollection collection)
-        {
-            if (collection.Count == 0)
-            { 
-                return true;
-            }
+        return value == null || (value is not string && (value is ICollection collection
+            ? collection.Count == 0
+            : value is IEnumerable enumerable
+                ? !enumerable.Cast<object>().Any()
+                : !value.GetType().IsValueType && value.IsEmpty()));
+    }
 
-            return false;
-        }
-        
-        if (value is IEnumerable enumerable)
+    /// <summary>
+    /// Converts any object to a dynamic object.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="data">
+    /// The original object.
+    /// </param>
+    /// <param name="extras">
+    /// Additional propertyNames to be added to the expando object.
+    /// </param>
+    /// <returns>
+    /// Expando object.
+    /// </returns>
+    /// <remarks>
+    /// Adapted from:
+    /// https://stackoverflow.com/questions/42836936/convert-class-to-dynamic-and-add-propertyNames#answer-42837044
+    /// </remarks>
+    public static dynamic? ToDynamic<T>
+    (
+        this T data,
+        Dictionary<string, object>? extras = null
+    )
+    {
+        IDictionary<string, object?> expando = new ExpandoObject();
+
+        foreach (PropertyInfo propertyInfo in typeof(T).GetProperties(
+            BindingFlags.Instance | 
+            BindingFlags.Public | 
+            BindingFlags.NonPublic))
         {
-            if (enumerable.Cast<object>().Any())
+            object? currentValue = propertyInfo.GetValue(data);
+
+            if (currentValue != null)
             {
-                return false;
+                expando.Add(propertyInfo.Name, currentValue);
             }
-
-            return true;
         }
-        
-        if (value.GetType().IsValueType)
+
+        if (extras != null)
         {
-            return false;
+            foreach (string key in extras.Keys)
+            {
+                if (extras[key] != null)
+                {
+                    expando.Add(key, extras[key]);
+                }
+            }
         }
 
-        return value.IsEmpty();
-    } 
+        return expando as ExpandoObject;
+    }
     #endregion
 }

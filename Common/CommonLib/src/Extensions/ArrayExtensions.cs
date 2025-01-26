@@ -1,4 +1,6 @@
-﻿namespace DotNetExtras.Extensions;
+﻿using DotNetExtras.Extensions.Utilities;
+
+namespace DotNetExtras.Extensions;
 
 /// <summary>
 /// Implements extension methods applicable to arrays.

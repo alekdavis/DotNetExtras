@@ -3,9 +3,9 @@
 namespace DotNetExtras.Extensions;
 
 /// <summary>
-/// Implements extension methods applicable to collections.
+/// Implements extension methods applicable to IEnumerable types.
 /// </summary>
-public static class CollectionExtensions
+public static class IEnumerableExtensions
 {
     /// <summary>
     /// Returns number of items in any collection type.

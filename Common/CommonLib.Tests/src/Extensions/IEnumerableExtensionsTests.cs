@@ -1,7 +1,7 @@
 ﻿using DotNetExtras.Extensions;
 
 namespace CommonLibTests.Extensions;
-public class CollectionExtensionsTests
+public class IEnumerableExtensionsTests
 {
     [Fact]
     public void Count()

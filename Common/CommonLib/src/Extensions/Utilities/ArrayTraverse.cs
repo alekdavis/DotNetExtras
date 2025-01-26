@@ -1,4 +1,4 @@
-﻿namespace DotNetExtras.Extensions;
+﻿namespace DotNetExtras.Extensions.Utilities;
 
 /// <summary>
 /// Implements extension methods for array traversals.
