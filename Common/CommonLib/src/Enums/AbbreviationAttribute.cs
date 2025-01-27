@@ -1,24 +1,27 @@
-﻿namespace DotNetExtras.Attributes;
+﻿namespace DotNetExtras.Common;
 
 /// <summary>
-/// Defines an abbreviation.
+/// Defines the abbreviation attribute.
 /// </summary>
-/// <seealso cref="Attribute" />
-/// <remarks>
-/// Initializes a new instance of the <see cref="AbbreviationAttribute"/> class.
-/// </remarks>
-/// <param name="abbreviation">
-/// Abbreviation.
-/// </param>
 [AttributeUsage(AttributeTargets.Field, AllowMultiple = false, Inherited = false)]
-public class AbbreviationAttribute
-(
-    string abbreviation
-)
-: Attribute
+public class AbbreviationAttribute: Attribute
 {
     /// <summary>
-    /// Abbreviation.
+    /// Abbreviation value.
     /// </summary>
-    public string Abbreviation { get; private set; } = abbreviation;
+    public string Abbreviation { get; private set; }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="AbbreviationAttribute"/> class.
+    /// </summary>
+    /// <param name="abbreviation">
+    /// Abbreviation value.
+    /// </param>
+    public AbbreviationAttribute
+    (
+        string abbreviation
+    )
+    {
+        Abbreviation = abbreviation;
+    }
 }

@@ -2,11 +2,11 @@
 using System.Dynamic;
 using System.Reflection;
 
-namespace DotNetExtras.Extensions;
+namespace DotNetExtras.Common;
 /// <summary>
 /// General-purpose extension methods for objects.
 /// </summary>
-public static class ObjectExtensions
+public static partial class ObjectExtensions
 {
     #region Public methods
     /// <summary>
@@ -98,8 +98,10 @@ public static class ObjectExtensions
     /// <summary>
     /// Converts any object to a dynamic object.
     /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <param name="data">
+    /// <typeparam name="T">
+    /// Data type of the source object.
+    /// </typeparam>
+    /// <param name="source">
     /// The original object.
     /// </param>
     /// <param name="extras">
@@ -114,7 +116,7 @@ public static class ObjectExtensions
     /// </remarks>
     public static dynamic? ToDynamic<T>
     (
-        this T data,
+        this T source,
         Dictionary<string, object>? extras = null
     )
     {
@@ -125,7 +127,7 @@ public static class ObjectExtensions
             BindingFlags.Public | 
             BindingFlags.NonPublic))
         {
-            object? currentValue = propertyInfo.GetValue(data);
+            object? currentValue = propertyInfo.GetValue(source);
 
             if (currentValue != null)
             {

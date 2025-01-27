@@ -1,4 +1,4 @@
-﻿namespace DotNetExtras.Extensions.Utilities;
+﻿namespace DotNetExtras.Common;
 
 /// <summary>
 /// Implements reference equality operations for deep cloning.

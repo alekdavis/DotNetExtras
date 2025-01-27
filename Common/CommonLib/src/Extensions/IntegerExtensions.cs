@@ -1,4 +1,7 @@
-﻿namespace DotNetExtras.Extensions;
+﻿namespace DotNetExtras.Common;
+/// <summary>
+/// Extension methods for integer values.
+/// </summary>
 public static class IntegerExtensions
 {
     /// <summary>

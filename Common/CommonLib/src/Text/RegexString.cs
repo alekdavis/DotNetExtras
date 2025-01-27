@@ -1,4 +1,4 @@
-﻿namespace DotNetExtras.Text;
+﻿namespace DotNetExtras.Common;
 
 /// <summary>
 /// Implements common regular expressions.

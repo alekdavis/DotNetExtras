@@ -1,8 +1,8 @@
-﻿using DotNetExtras.Extensions;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 
-namespace DotNetExtras.Exceptions;
+namespace DotNetExtras.Common;
 
 /// <summary>
 /// Implements extension methods applicable to exceptions.
@@ -19,6 +19,11 @@ public static class ExceptionExtensions
     /// <typeparam name="T">
     /// Base type of the exception that will be included in the error message.
     /// </typeparam>
+    /// <param name="raw">
+    /// If true, original messages and formatting will be preserved; 
+    /// otherwise, all new lines, tabs and duplicate spaces will be replaced with single spaces
+    /// and consecutive duplicate messages will be omitted.
+    /// </param>
     /// <returns>
     /// Complete error message.
     /// </returns>
@@ -35,7 +40,8 @@ public static class ExceptionExtensions
     /// </remarks>
     public static string GetMessages<T>
     (
-        this Exception ex
+        this Exception ex,
+        bool raw = false
     )
     where T : Exception
     {
@@ -57,7 +63,7 @@ public static class ExceptionExtensions
                     messages.Append(' ');
                 }
 
-                messages.Append(ie.GetMessages<T>());
+                messages.Append(ie.GetMessages<T>(raw));
             }
         }
         else
@@ -71,9 +77,11 @@ public static class ExceptionExtensions
             {
                 if (e is T)
                 {
-                    string message = e.Message.ToSentence() ?? "";
+                    string message = raw 
+                        ? e.Message 
+                        : e.Message.ToSentence();
 
-                    if (!messages.ToString().EndsWith(message))
+                    if (raw || !messages.ToString().EndsWith(message))
                     {
                         if (messages.Length > 0)
                         {
@@ -88,7 +96,9 @@ public static class ExceptionExtensions
             }
         }
 
-        return messages.ToString();
+        return raw 
+            ? messages.ToString()
+            : Regex.Replace(messages.ToString(), @"\s+", " ").Trim();
     }
 
     /// <summary>
@@ -97,15 +107,21 @@ public static class ExceptionExtensions
     /// <param name="ex">
     /// Immediate exception.
     /// </param>
+    /// <param name="raw">
+    /// If true, original messages and formatting will be preserved; 
+    /// otherwise, all new lines, tabs and duplicate spaces will be replaced with single spaces
+    /// and consecutive duplicate messages will be omitted.
+    /// </param>
     /// <returns>
     /// Complete error message.
     /// </returns>
     public static string GetMessages
     (
-        this Exception ex
+        this Exception ex,
+        bool raw = false
     )
     {
-        return ex.GetMessages<Exception>();
+        return ex.GetMessages<Exception>(raw);
     }
 
     /// <summary>

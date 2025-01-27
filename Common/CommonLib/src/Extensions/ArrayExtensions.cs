@@ -1,16 +1,14 @@
-﻿using DotNetExtras.Extensions.Utilities;
-
-namespace DotNetExtras.Extensions;
+﻿namespace DotNetExtras.Common;
 
 /// <summary>
 /// Implements extension methods applicable to arrays.
 /// </summary>
 /// <remarks>
 /// Adapted from 
-/// https://github.com/Burtsev-Alexey/net-object-deep-copy/blob/master/ObjectExtensions.cs
+/// <see href="https://github.com/Burtsev-Alexey/net-object-deep-copy/blob/master/ObjectExtensions.cs"/>
 /// for deep cloning.
 /// </remarks>
-internal static class ArrayExtensions
+internal static partial class ArrayExtensions
 {
     internal static void ForEach
     (

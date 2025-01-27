@@ -164,12 +164,21 @@ public static class NameOf
     /// Returns a shortened name of the object, class, type, or property
     /// after removing the specified number of compound prefixes or suffixes.
     /// </summary>
+    /// <param name="caller">
+    /// Full or partial property name (can also be referenced using <c>nameof</c>).
+    /// </param>
     /// <param name="count">
     /// Number of parts to be excluded from the result.
     /// A positive number indicates skipping from the left,
     /// a negative number indicates skipping from the right.
     /// If the skipped number is bigger than the number of parts,
     /// an empty string will be returned.
+    /// </param>
+    /// <param name="camelCase">
+    /// If true, parameter names will be converted to camelCase.
+    /// </param>
+    /// <param name="name">
+    /// Must be omitted.
     /// </param>
     /// <returns>
     /// Shortened name.
@@ -225,12 +234,21 @@ public static class NameOf
     /// Returns a shortened name of the object, class, type, or property
     /// keeping the specified number of compound prefixes or suffixes.
     /// </summary>
+    /// <param name="caller">
+    /// Full or partial property name (can also be referenced using <c>nameof</c>).
+    /// </param>
     /// <param name="count">
     /// Number of parts to be included in the result.
     /// A positive number indicates including from the left,
     /// a negative number indicates including from the right.
     /// If the kept number is bigger than the number of parts,
     /// an empty string will be returned.
+    /// </param>
+    /// <param name="camelCase">
+    /// If true, parameter names will be converted to camelCase.
+    /// </param>
+    /// <param name="name">
+    /// Must be omitted.
     /// </param>
     /// <returns>
     /// Shortened name.

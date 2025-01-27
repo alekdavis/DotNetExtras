@@ -4,7 +4,10 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
 
-namespace DotNetExtras.Extensions;
+namespace DotNetExtras.Common;
+/// <summary>
+/// Extension methods for string values.
+/// </summary>
 public static class StringExtensions
 {
     /// <summary>
@@ -40,7 +43,7 @@ public static class StringExtensions
     /// unless it already ends with one of the punctuation characters:
     /// ,.!?;:
     /// </summary>
-    /// <param name="input">
+    /// <param name="source">
     /// Input string.
     /// </param>
     /// <param name="trimStart">
@@ -54,31 +57,31 @@ public static class StringExtensions
     /// </returns>
     public static string ToSentence
     (
-        this string input,
+        this string source,
         bool trimStart = true,
         bool trimEnd = true
     )
     {
-        if (string.IsNullOrEmpty(input))
+        if (string.IsNullOrEmpty(source))
         {
             return "";
         }
 
         if (trimStart)
         {
-            input = input.TrimStart();
+            source = source.TrimStart();
         }
 
         if (trimEnd)
         {
-            input = input.TrimEnd();
+            source = source.TrimEnd();
         }
 
-        return string.IsNullOrEmpty(input)
+        return string.IsNullOrEmpty(source)
             ? ""
-            : Regex.IsMatch(input, @"[\p{P}]$")
-                ? input
-                : input + ".";
+            : Regex.IsMatch(source, @"[\p{P}]$")
+                ? source
+                : source + ".";
     }
     /// <summary>
     /// Converts a JSON string to an object.
@@ -146,49 +149,58 @@ public static class StringExtensions
     /// <summary>
     /// Converts a string to a <see cref="System.DateTime"/> value.
     /// </summary>
-    /// <param name="input">
+    /// <param name="source">
     /// Original value.
+    /// </param>
+    /// <param name="format">
+    /// Optional explicit date/time format.
     /// </param>
     /// <returns>
     /// DateTime value.
     /// </returns>
     public static DateTime? ToDateTime
     (
-        this string input,
+        this string source,
         string? format = null
     )
     {
-        return input == null
+        return source == null
             ? null
-            : format == null ? DateTime.Parse(input) : DateTime.ParseExact(input, format, CultureInfo.InvariantCulture);
+            : format == null ? DateTime.Parse(source) : DateTime.ParseExact(source, format, CultureInfo.InvariantCulture);
     }
 
     /// <summary>
     /// Converts a string to a <see cref="System.DateTimeOffset"/> value.
     /// </summary>
-    /// <param name="input">
+    /// <param name="source">
     /// Original value.
+    /// </param>
+    /// <param name="format">
+    /// Optional explicit date/time format.
     /// </param>
     /// <returns>
     /// DateTimeOffset value.
     /// </returns>
     public static DateTimeOffset? ToDateTimeOffset
     (
-        this string input,
+        this string source,
         string? format = null
     )
     {
-        return input == null
+        return source == null
             ? null
             : format == null 
-                ? DateTimeOffset.Parse(input) 
-                : DateTimeOffset.ParseExact(input, format, CultureInfo.InvariantCulture);
+                ? DateTimeOffset.Parse(source) 
+                : DateTimeOffset.ParseExact(source, format, CultureInfo.InvariantCulture);
     }
 
     /// <summary>
     /// Converts string to a list.
     /// </summary>
-    /// <param name="input">
+    /// <typeparam name="T">
+    /// Data type of the list elements.
+    /// </typeparam>
+    /// <param name="source">
     /// String value.
     /// </param>
     /// <param name="delimiter">
@@ -199,16 +211,16 @@ public static class StringExtensions
     /// </returns>
     public static List<T>? ToList<T>
     (
-        this string? input,
+        this string? source,
         char delimiter = '|'
     )
     {
-        if (input == null)
+        if (source == null)
         {
             return null;
         }
 
-        string[] items = input.Split(delimiter);
+        string[] items = source.Split(delimiter);
         List<T> list = [];
 
         foreach (string item in items)
@@ -226,7 +238,10 @@ public static class StringExtensions
     /// <summary>
     /// Converts string to array.
     /// </summary>
-    /// <param name="input">
+    /// <typeparam name="T">
+    /// Data type of the array elements.
+    /// </typeparam>
+    /// <param name="source">
     /// String value.
     /// </param>
     /// <param name="delimiter">
@@ -247,7 +262,13 @@ public static class StringExtensions
     /// <summary>
     /// Converts string to a dictionary.
     /// </summary>
-    /// <param name="input">
+    /// <typeparam name="TKey">
+    /// Data type of the dictionary key elements.
+    /// </typeparam>
+    /// <typeparam name="TValue">
+    /// Data type of the dictionary value elements.
+    /// </typeparam>
+    /// <param name="source">
     /// String value.
     /// </param>
     /// <param name="delimiter">
@@ -261,25 +282,25 @@ public static class StringExtensions
     /// </returns>
     public static Dictionary<TKey,TValue>? ToDictionary<TKey,TValue>
     (
-        this string? input,
+        this string? source,
         char delimiter = '|',
         char keyValueSeparator = '='
     )
     where TKey : notnull
     {
-        if (input == null)
+        if (source == null)
         {
             return null;
         }
 
         Dictionary<TKey,TValue> dictionary = [];
 
-        if (string.IsNullOrEmpty(input))
+        if (string.IsNullOrEmpty(source))
         {
             return dictionary;
         }
 
-        string[] pairs = input.Split(delimiter);
+        string[] pairs = source.Split(delimiter);
 
         foreach (string pair in pairs)
         {
@@ -316,9 +337,9 @@ public static class StringExtensions
     /// Converts string to a hash set.
     /// </summary>
     /// <typeparam name="T">
-    /// Data type of each element in the hash set.
+    /// Data type of the hash set elements.
     /// </typeparam>
-    /// <param name="input">
+    /// <param name="source">
     /// Input string.
     /// </param>
     /// <param name="delimiter">
@@ -329,16 +350,16 @@ public static class StringExtensions
     /// </returns>
     public static HashSet<T>? ToHashSet<T>
     (
-        this string? input,
+        this string? source,
         char delimiter = '|'
     )
     {
-        if (input == null)
+        if (source == null)
         {
             return null;
         }
 
-        string[] items = input.Split(delimiter);
+        string[] items = source.Split(delimiter);
         HashSet<T> hashSet = [];
 
         foreach (string item in items)

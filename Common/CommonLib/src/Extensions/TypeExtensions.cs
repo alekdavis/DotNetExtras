@@ -1,7 +1,7 @@
-﻿/// <summary>
-/// Implements extension methods applicable to types.
+﻿namespace DotNetExtras.Common;
+/// <summary>
+/// Extension methods applicable to types.
 /// </summary>
-namespace DotNetExtras.Extensions;
 public static class TypeExtensions
 {
     /// <summary>
@@ -9,6 +9,12 @@ public static class TypeExtensions
     /// (i.e. enum, string, number, GUID, date, time, offset, etc.) 
     /// or complex (i.e. custom class with public properties and methods, list, array, etc.).
     /// </summary>
+    /// <param name="type">
+    /// Data type.
+    /// </param>
+    /// <returns>
+    /// True if the type is simple; otherwise, false.
+    /// </returns>
     /// <remarks>
     /// See <see href="http://stackoverflow.com/questions/2442534/how-to-test-if-type-is-primitive"/>
     /// and <see href="https://gist.github.com/jonathanconway/3330614"/>.

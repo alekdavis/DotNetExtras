@@ -5,7 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <AssemblyName>DotNetExtras.Common</AssemblyName>
-    <RootNamespace>DotNetExtras</RootNamespace>
+    <RootNamespace>DotNetExtras.Common</RootNamespace>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageId>DotNetExtras.Common</PackageId>
     <Title>DotNetExtras.Common</Title>
@@ -17,6 +17,7 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/alekdavis/DotNetExtras.git</RepositoryUrl>
     <PackageTags>.net;utilities;helpers;library;classes;tools;toolbox</PackageTags>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

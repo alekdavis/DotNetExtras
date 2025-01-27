@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace DotNetExtras.Metadata;
+namespace DotNetExtras.Common;
 /// <summary>
 /// Provides information about the primary application assembly.
 /// </summary>
