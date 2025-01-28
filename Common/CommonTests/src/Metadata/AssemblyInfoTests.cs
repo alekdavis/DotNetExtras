@@ -51,7 +51,7 @@ public class AssemblyInfoTests
     [Fact]
     public void AssemblyInfo_GetAssembly()
     {
-        var assembly = AssemblyInfo.GetAssembly();
+        Assembly? assembly = AssemblyInfo.GetAssembly();
 
         Assert.NotNull(assembly);
         Assert.Equal(

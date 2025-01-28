@@ -11,7 +11,7 @@ public static partial class Extensions
     /// <returns>
     /// Hex-formatted hresult value.
     /// </returns>
-    public static string? ToHResult
+    public static string ToHResult
     (
         this int hresult
     )

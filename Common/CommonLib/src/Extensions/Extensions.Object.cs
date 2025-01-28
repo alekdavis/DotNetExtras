@@ -3,9 +3,6 @@ using System.Dynamic;
 using System.Reflection;
 
 namespace DotNetExtras.Common.Extensions;
-/// <summary>
-/// General-purpose extension methods for objects.
-/// </summary>
 public static partial class Extensions
 {
     #region Public methods
@@ -22,6 +19,18 @@ public static partial class Extensions
     /// <returns>
     /// <c>true</c> if the object is empty; otherwise, <c>false</c>.
     /// </returns>
+    /// <example>
+    /// <code>
+    /// User? u1 = new();
+    /// Assert.True(u1.IsEmpty());
+    ///
+    /// User? u2 = new()
+    /// {
+    ///     Id = "123"
+    /// };
+    /// Assert.False(u2.IsEmpty());
+    /// </code>
+    /// </example>
     public static bool IsEmpty
     (
         this object? source,
@@ -74,30 +83,6 @@ public static partial class Extensions
 
         return true;
     }
-    #endregion
-
-    #region Private methods
-    /// <summary>
-    /// Determines whether the specified value is empty.
-    /// A value is considered empty if it is null, an empty string, an empty collection, or an empty enumerable.
-    /// </summary>
-    /// <param name="value">
-    /// The value to check.
-    /// </param>
-    /// <returns>
-    /// <c>true</c> if the value is empty; otherwise, <c>false</c>.
-    /// </returns>
-    private static bool IsEmptyValue
-    (
-        object? value
-    )
-    {
-        return value == null || (value is not string && (value is ICollection collection
-            ? collection.Count == 0
-            : value is IEnumerable enumerable
-                ? !enumerable.Cast<object>().Any()
-                : !value.GetType().IsValueType && value.IsEmpty()));
-    }
 
     /// <summary>
     /// Converts any object to a dynamic object.
@@ -118,9 +103,30 @@ public static partial class Extensions
     /// Expando object.
     /// </returns>
     /// <remarks>
-    /// Adapted from:
-    /// https://stackoverflow.com/questions/42836936/convert-class-to-dynamic-and-add-propertyNames#answer-42837044
+    /// Adapted from
+    /// <see href="https://stackoverflow.com/questions/42836936/convert-class-to-dynamic-and-add-propertyNames#answer-42837044"/>.
     /// </remarks>
+    /// <example>
+    /// <code>
+    /// User user = new()
+    /// {
+    ///     Name = new()
+    ///     {
+    ///         GivenName = "John",
+    ///         Surname = "Doe"
+    ///     },
+    ///     Age = 42,
+    ///     Mail = "John.Doe@mail.com",
+    /// };
+    ///
+    /// Dictionary&lt;string, object&gt; extras = new()
+    /// {
+    ///     { "ExtraProperty", "XYZ" }
+    /// };
+    ///
+    /// dynamic? result = user.ToDynamic(extras);
+    /// </code>
+    /// </example>
     public static dynamic? ToDynamic<T>
     (
         this T source,
@@ -155,6 +161,30 @@ public static partial class Extensions
         }
 
         return expando as ExpandoObject;
+    }
+    #endregion
+
+    #region Private methods
+    /// <summary>
+    /// Determines whether the specified value is empty.
+    /// A value is considered empty if it is null, an empty string, an empty collection, or an empty enumerable.
+    /// </summary>
+    /// <param name="value">
+    /// The value to check.
+    /// </param>
+    /// <returns>
+    /// <c>true</c> if the value is empty; otherwise, <c>false</c>.
+    /// </returns>
+    private static bool IsEmptyValue
+    (
+        object? value
+    )
+    {
+        return value == null || (value is not string && (value is ICollection collection
+            ? collection.Count == 0
+            : value is IEnumerable enumerable
+                ? !enumerable.Cast<object>().Any()
+                : !value.GetType().IsValueType && value.IsEmpty()));
     }
     #endregion
 }

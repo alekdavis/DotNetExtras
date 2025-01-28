@@ -11,7 +11,8 @@
 public class RegexString
 {
     /// <summary>
-    /// A regular expression for validating GUID/UUID values.
+    /// A regular expression for validating GUID/UUID values:
+    /// ^[({]?[a-fA-F0-9]{8}[-]?([a-fA-F0-9]{4}[-]?){3}[a-fA-F0-9]{12}[})]?$
     /// </summary>
     /// <remarks>
     /// <para>
@@ -27,7 +28,8 @@ public class RegexString
         "^[({]?[a-fA-F0-9]{8}[-]?([a-fA-F0-9]{4}[-]?){3}[a-fA-F0-9]{12}[})]?$";
 
     /// <summary>
-    /// A simplified regular expression for validating Azure-compliant email addresses.
+    /// A simplified regular expression for validating Azure-compliant email addresses:
+    /// (?=^.{5,64}$)^[a-z0-9!#$%&amp;'+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&amp;'+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$
     /// </summary>
     /// <remarks>
     /// <para>

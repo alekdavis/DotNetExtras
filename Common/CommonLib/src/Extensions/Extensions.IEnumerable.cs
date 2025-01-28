@@ -71,6 +71,18 @@ public static partial class Extensions
     /// <returns>
     /// Comma-(or whatever)-separated string value (or empty string if collection is null or empty).
     /// </returns>
+    /// <example>
+    /// <code>
+    /// List&lt;int&gt; numbers = new List&lt;int&gt;(){ 1, 2, 3, 4, 5 };
+    /// 
+    /// // Output: 1, 2, 3, 4, 5
+    /// Console.WriteLine(numbers.ToCsv()); 
+    ///
+    /// List&lt;string&gt; words = new List&lt;string&gt;(){ "apple", "banana", "cherry" };
+    /// // Output: "apple", "banana", "cherry"
+    /// Console.WriteLine(words.ToCsv(", ", "\"", "\"")); 
+    /// </code>
+    /// </example>
     public static string ToCsv<T>
     (
         this IEnumerable<T> values,

@@ -11,12 +11,15 @@
 /// which can help you control the error details sent to the other apps
 /// and make sure sensitive information is not leaked outside of your application.
 /// </summary>
+[Serializable]
 public class SafeException: Exception
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="SafeException"/> class.
     /// </summary>
-    public SafeException(): base() {}
+    public SafeException(): base() 
+    {
+    }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="SafeException"/> class.
@@ -24,7 +27,13 @@ public class SafeException: Exception
     /// <param name="message">
     /// Error message.
     /// </param>
-    public SafeException(string message): base(message) { }
+    public SafeException
+    (
+        string message
+    )
+    : base(message) 
+    {
+    }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="SafeException"/> class.
@@ -35,5 +44,12 @@ public class SafeException: Exception
     /// <param name="innerException">
     /// Inner exception.
     /// </param>
-    public SafeException(string message, Exception innerException): base(message, innerException) { }
+    public SafeException
+    (
+        string message, 
+        Exception innerException
+    )
+    : base(message, innerException)
+    {
+    }
 }

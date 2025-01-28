@@ -81,7 +81,7 @@ public static partial class Extensions
 
         Type type = original.GetType();
 
-        if (type.IsPrimitive())
+        if (type.IsSimple())
         {
             return original;
         }
@@ -102,7 +102,7 @@ public static partial class Extensions
         {
             Type? elementType = type.GetElementType();
 
-            if (elementType != null && !elementType.IsPrimitive())
+            if (elementType != null && !elementType.IsSimple())
             {
 #pragma warning disable CS8604
 #pragma warning disable CS8602
@@ -196,7 +196,7 @@ public static partial class Extensions
                 continue;
             }
 
-            if (fieldInfo.FieldType.IsPrimitive())
+            if (fieldInfo.FieldType.IsSimple())
             {
                 continue;
             }

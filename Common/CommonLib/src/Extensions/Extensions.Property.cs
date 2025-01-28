@@ -16,10 +16,10 @@ public static partial class Extensions
 
     #region Public methods
     /// <summary>
-    /// Gets the value of a nested object property.
+    /// Returns the value of the immediate or nested object property.
     /// </summary>
     /// <param name="source">
-    /// Project that owns the property.
+    /// Object that owns the property.
     /// </param>
     /// <param name="name">
     /// Name of the property (case-insensitive; can be compound with names separated by periods).
@@ -33,12 +33,18 @@ public static partial class Extensions
     /// if it does not, the code will return <c>null</c>.
     /// </para>
     /// <para>
-    /// The property does not need to be nested.
+    /// The property can be nested.
     /// </para>
     /// <para>
-    /// The code handles both class propertyNames and fields.
+    /// The code handles both class properties and fields.
     /// </para>
     /// </remarks>
+    /// <example>
+    /// <code>
+    /// string? givenName = user.GetPropertyValue("Name.GivenName");
+    /// int? age = user.GetPropertyValue("Age");
+    /// </code>
+    /// </example>
     public static object? GetPropertyValue
     (
         this object? source,
@@ -74,8 +80,8 @@ public static partial class Extensions
     }
 
     /// <summary>
-    /// Sets the new value of an immediate or a nested object property
-    /// (creating parent nested properties if needed).
+    /// Sets the new value of an immediate or nested object property
+    /// (creating parent properties if needed).
     /// </summary>
     /// <param name="target">
     /// Object that owns the property to be set. 
@@ -84,11 +90,17 @@ public static partial class Extensions
     /// Name of the property (case-insensitive; can be compound with names separated by periods).
     /// </param>
     /// <param name="value">
-    /// Property value.
+    /// New property value.
     /// </param>
     /// <remarks>
     /// Adapted from <see href="https://stackoverflow.com/a/54006015/52545"/>.
     /// </remarks>
+    /// <example>
+    /// <code>
+    /// user.SetPropertyValue("Name.GivenName", "Smith");
+    /// user.GetPropertyValue("Age", 42);
+    /// </code>
+    /// </example>
     public static void SetPropertyValue
     (
         this object? target,

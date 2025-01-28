@@ -26,6 +26,12 @@ public static partial class Extensions
     /// <returns>
     /// String value with properly escaped character.
     /// </returns>
+    /// <example>
+    /// <code>
+    /// // escaped = in "It''s a test".
+    /// string escaped = "It's a test".Escape();
+    /// </code>
+    /// </example>
     public static string? Escape
     (
         this string source,
@@ -55,6 +61,12 @@ public static partial class Extensions
     /// <returns>
     /// Input string that has a valid punctuation string at the end.
     /// </returns>
+    /// <example>
+    /// <code>
+    /// // PRINTS: "Hello, world."
+    /// Console.WriteLine("Hello, world".ToSentence());
+    /// </code>
+    /// </example>
     public static string ToSentence
     (
         this string source,
@@ -83,6 +95,7 @@ public static partial class Extensions
                 ? source
                 : source + ".";
     }
+
     /// <summary>
     /// Converts a JSON string to an object.
     /// </summary>
@@ -95,6 +108,11 @@ public static partial class Extensions
     /// <returns>
     /// Converted value or default if conversion failed.
     /// </returns>
+    /// <example>
+    /// <code>
+    /// User? user = "{\"id\":123,\"name\":\"John\"}".FromJson&lt;User&gt;();
+    /// </code>
+    /// </example>
     public static T? FromJson<T>
     (
         this string? json
@@ -127,6 +145,14 @@ public static partial class Extensions
     /// <returns>
     /// Converted value or default if conversion failed.
     /// </returns>
+    /// <example>
+    /// <code>
+    /// bool b = "true".ToType&lt;bool&gt;();
+    /// int n = "123".ToType&lt;int&gt;();
+    /// DateTime dt = "2021-10-11T17:54:38".ToType&lt;DateTime&gt;();
+    /// DateTimeOffset dto = "2021-10-11T17:54:38-03:30".ToType&lt;DateTimeOffset&gt;();
+    /// </code>
+    /// </example>
     public static T ToType<T>
     (
         this string source
@@ -158,6 +184,13 @@ public static partial class Extensions
     /// <returns>
     /// DateTime value.
     /// </returns>
+    /// <example>
+    /// <code>
+    /// DateTime? dt1 = "2023-11-01T11:30:00+00:30".ToDateTime();
+    /// DateTime? dt2 = "01/11/2023".ToDateTime("dd/MM/yyyy");
+    /// DateTime? dt3 = "2023-11-01 12:30:00".ToDateTime("yyyy-MM-dd HH:mm:ss");
+    /// </code>
+    /// </example>
     public static DateTime? ToDateTime
     (
         this string source,
@@ -166,7 +199,9 @@ public static partial class Extensions
     {
         return source == null
             ? null
-            : format == null ? DateTime.Parse(source) : DateTime.ParseExact(source, format, CultureInfo.InvariantCulture);
+            : format == null 
+                ? DateTime.Parse(source) 
+                : DateTime.ParseExact(source, format, CultureInfo.InvariantCulture);
     }
 
     /// <summary>
@@ -181,6 +216,13 @@ public static partial class Extensions
     /// <returns>
     /// DateTimeOffset value.
     /// </returns>
+    /// <example>
+    /// <code>
+    /// DateTimeOffset? dto1 = "2023-11-01T11:30:00+00:30".ToDateTimeOffset();
+    /// DateTimeOffset? dto2 = "2023-11-01T11:30:00+03:30".ToDateTimeOffset();
+    /// DateTimeOffset? dto3 = "2023-12-01 16:30:00 +00:00".ToDateTimeOffset("yyyy-MM-dd HH:mm:ss zzz");
+    /// </code>
+    /// </example>
     public static DateTimeOffset? ToDateTimeOffset
     (
         this string source,
@@ -204,15 +246,21 @@ public static partial class Extensions
     /// String value.
     /// </param>
     /// <param name="delimiter">
-    /// List item delimiter character.
+    /// List item delimiter string.
     /// </param>
     /// <returns>
     /// Generic list.
     /// </returns>
+    /// <example>
+    /// <code>
+    /// // Will hold: key1=value1, key2=value2
+    /// List&lt;string&gt; result = "value1|value2|value3".ToList&lt;string&gt;();
+    /// </code>
+    /// </example>    
     public static List<T>? ToList<T>
     (
         this string? source,
-        char delimiter = '|'
+        string delimiter = "|"
     )
     {
         if (source == null)
@@ -245,18 +293,29 @@ public static partial class Extensions
     /// String value.
     /// </param>
     /// <param name="delimiter">
-    /// Array item delimiter character.
+    /// Array item delimiter string.
+    /// </param>
+    /// <param name="options">
+    /// String splitting options.
     /// </param>
     /// <returns>
     /// Generic array.
     /// </returns>
+    /// <example>
+    /// <code>
+    /// // Will hold: key1=value1, key2=value2
+    /// string[] result = "value1|value2|value3".ToArray&lt;string&gt;();
+    /// </code>
+    /// </example>
     public static T[]? ToArray<T>
     (
         this string? source, 
-        char delimiter='|'
+        string delimiter = "|",
+        StringSplitOptions options = StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries
     )
     {
-        return source?.Split(delimiter).Select(n => (T)Convert.ChangeType(n, typeof(T))).ToArray<T>();
+        return source?.Split(delimiter, options).Select(n => 
+            (T)Convert.ChangeType(n, typeof(T))).ToArray<T>();
     }
 
     /// <summary>
@@ -272,19 +331,33 @@ public static partial class Extensions
     /// String value.
     /// </param>
     /// <param name="delimiter">
-    /// List item delimiter character.
+    /// List item delimiter string.
     /// </param>
     /// <param name="keyValueSeparator">
-    /// Name value delimiter character.
+    /// Name value delimiter string.
+    /// </param>
+    /// <param name="optionsPairs">
+    /// Options for splitting pairs.
+    /// </param>
+    /// <param name="optionsKeyValue">
+    /// Options for splitting key from value.
     /// </param>
     /// <returns>
     /// Generic dictionary.
     /// </returns>
+    /// <example>
+    /// <code>
+    /// // Will hold: key1=value1, key2=value2
+    /// Dictionary&lt;string,string&gt; result = "key1=value1|key2=value2".ToDictionary&lt;string, string&gt;();
+    /// </code>
+    /// </example>
     public static Dictionary<TKey,TValue>? ToDictionary<TKey,TValue>
     (
         this string? source,
-        char delimiter = '|',
-        char keyValueSeparator = '='
+        string delimiter = "|",
+        string keyValueSeparator = "=",
+        StringSplitOptions optionsPairs = StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries,
+        StringSplitOptions optionsKeyValue = StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries
     )
     where TKey : notnull
     {
@@ -300,11 +373,11 @@ public static partial class Extensions
             return dictionary;
         }
 
-        string[] pairs = source.Split(delimiter);
+        string[] pairs = source.Split(delimiter, optionsPairs);
 
         foreach (string pair in pairs)
         {
-            string[] keyValue = pair.Split(keyValueSeparator);
+            string[] keyValue = pair.Split(keyValueSeparator, optionsKeyValue);
 
             if (keyValue.Length == 2)
             {
@@ -345,13 +418,26 @@ public static partial class Extensions
     /// <param name="delimiter">
     /// Delimiter character.
     /// </param>
+    /// <param name="options">
+    /// String splitting options.
+    /// </param>
     /// <returns>
     /// Generic hash set.
     /// </returns>
+    /// <example>
+    /// <code>
+    /// // Will hold: [1, 2, 3]
+    /// HashSet&lt;int&gt;? hashSet = "1|2|3".ToHashSet();
+    /// 
+    /// // Will hold: ["one", "two", "three"]
+    /// HashSet&lt;string&gt;? hashSet = "one,two,three".ToHashSet(",");
+    /// </code>
+    /// </example>
     public static HashSet<T>? ToHashSet<T>
     (
         this string? source,
-        char delimiter = '|'
+        string delimiter = "|",
+        StringSplitOptions options = StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries
     )
     {
         if (source == null)
@@ -359,7 +445,8 @@ public static partial class Extensions
             return null;
         }
 
-        string[] items = source.Split(delimiter);
+        string[] items = source.Split(delimiter, options);
+
         HashSet<T> hashSet = [];
 
         foreach (string item in items)

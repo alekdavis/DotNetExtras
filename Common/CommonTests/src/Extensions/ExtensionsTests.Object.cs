@@ -80,7 +80,7 @@ public partial class ExtensionsTests
             ],
         };
 
-        var extras = new Dictionary<string, object>
+        Dictionary<string, object> extras = new()
         {
             { "ExtraProperty", "XYZ" }
         };

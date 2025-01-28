@@ -14,7 +14,7 @@ public partial class ExtensionsTests
         string? expected
     )
     {
-        var result = source?.Escape();
+        string? result = source?.Escape();
 
         Assert.Equal(expected, result);
     }
@@ -41,7 +41,7 @@ public partial class ExtensionsTests
     )
     {
 #pragma warning disable CS8604 // Possible null reference argument.
-        var result = source.ToSentence();
+        string result = source.ToSentence();
 #pragma warning restore CS8604 // Possible null reference argument.
 
         Assert.Equal(expected, result);
@@ -66,6 +66,46 @@ public partial class ExtensionsTests
         Assert.Equal(new DateTimeOffset(2021, 10, 11, 17, 54, 38, new TimeSpan(-3, -30, 0)), "2021-10-11T17:54:38-03:30".ToType<DateTimeOffset?>());
         Assert.True("true".ToType<bool>());
         Assert.False("false".ToType<bool>());
+    }
+
+    [Theory]
+    [InlineData("2023-11-01", null, 2023, 11, 1)]
+    [InlineData("01/11/2023", "dd/MM/yyyy", 2023, 11, 1)]
+    [InlineData("2023-11-01 12:30:00", "yyyy-MM-dd HH:mm:ss", 2023, 11, 1, 12, 30, 0)]
+    public void String_ToDateTime
+    (
+        string input, 
+        string? format,
+        int year, 
+        int month, 
+        int day, 
+        int hour = 0, 
+        int minute = 0, 
+        int second = 0
+    )
+    {
+        DateTime? result = input.ToDateTime(format);
+
+        Assert.NotNull(result);
+        Assert.Equal(new DateTime(year, month, day, hour, minute, second), result);
+    }
+
+    [Theory]
+    [InlineData("2023-11-01T11:30:00+03:30", null, "2023-11-01T11:30:00+03:30")]
+    [InlineData("2023-10-01T14:30:00-03:30", null, "2023-10-01T14:30:00-03:30")]
+    [InlineData("2023-12-01 16:30:00 +00:00", "yyyy-MM-dd HH:mm:ss zzz", "2023-12-01T16:30:00+00:00")]
+    public void String_ToDateTimeOffset
+    (
+        string input, 
+        string? format, 
+        string expected
+    )
+    {
+        DateTimeOffset? result = input.ToDateTimeOffset(format);
+
+        Assert.NotNull(result);
+
+        Assert.Equal(expected, result?.ToString("yyyy-MM-ddTHH:mm:sszzz"));
     }
 
     [Fact]
