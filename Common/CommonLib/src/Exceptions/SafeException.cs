@@ -5,7 +5,7 @@
 /// This can be handy in a few cases.
 /// For example, calling the <see cref="Extensions.Extensions.GetMessages{T}(Exception, bool)"/>
 /// extension method passing <see cref="SafeException"/> as the generic type
-/// (or calling the <see cref="Extensions.Extensions.GetSafeMessages(Exception)"/>
+/// (or calling the <see cref="Extensions.Extensions.GetSafeMessages(Exception, bool)"/>
 /// extension method),
 /// will only return messages from your custom exceptions
 /// which can help you control the error details sent to the other apps
