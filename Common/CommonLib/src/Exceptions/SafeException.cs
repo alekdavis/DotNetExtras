@@ -1,12 +1,15 @@
-﻿namespace DotNetExtras.Common;
+﻿namespace DotNetExtras.Common.Exceptions;
 /// <summary>
-/// Base exception class that can be used to filter exceptions for the purpose of returning 
-/// error information to the caller. If you derive an exception from this class,
-/// then calling the <see cref="ExceptionExtensions.GetMessages{T}(Exception,bool)"/>
-/// extension method passing <see cref="SafeException"/> as the generic type,
-/// will only return messages from the exceptions derived from this class.
-/// This can help you control the error details sent to the other apps,
-/// and make sure no sensitive info is leaked outside of your app.
+/// Use the <see cref="SafeException"/> class as the base exception for your custom exception classes,
+/// so you can easily recognize them in code.
+/// This can be handy in a few cases.
+/// For example, calling the <see cref="Extensions.Extensions.GetMessages{T}(Exception, bool)"/>
+/// extension method passing <see cref="SafeException"/> as the generic type
+/// (or calling the <see cref="Extensions.Extensions.GetSafeMessages(Exception)"/>
+/// extension method),
+/// will only return messages from your custom exceptions
+/// which can help you control the error details sent to the other apps
+/// and make sure sensitive information is not leaked outside of your application.
 /// </summary>
 public class SafeException: Exception
 {

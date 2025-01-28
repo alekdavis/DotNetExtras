@@ -1,14 +1,28 @@
 ﻿using System.Reflection;
 
-namespace DotNetExtras.Common;
+namespace DotNetExtras.Common.Metadata;
 /// <summary>
-/// Provides information about the primary application assembly.
+/// Use the static <see cref="AssemblyInfo"/> methods to easily
+/// access to the primary application assembly and its most commonly used attributes.
 /// </summary>
 /// <remarks>
-/// Adapted some code from 
-/// "Access AssemblyInfo File and Get Product Informations"
-/// https://www.c-sharpcorner.com/UploadFile/ravesoft/access-assemblyinfo-file-and-get-product-informations/
+/// <para>
+/// The primary assembly normally corresponds to the main application assembly.
+/// </para>
+/// <para>
+/// Adapted from 
+/// <see href="https://www.c-sharpcorner.com/UploadFile/ravesoft/access-assemblyinfo-file-and-get-product-informations"/>.
+/// </para>
 /// </remarks>
+/// <example>
+/// <code>
+/// string company   = AssemblyInfo.Company;
+/// string copyright = AssemblyInfo.Copyright;
+/// string product   = AssemblyInfo.Product;
+/// string version   = AssemblyInfo.Version;
+/// string title     = AssemblyInfo.Title;
+/// </code>
+/// </example>
 public static class AssemblyInfo
 {
     #region Public properties
@@ -76,8 +90,8 @@ public static class AssemblyInfo
     /// Returns the version of the assembly file.
     /// </summary>
     /// <remarks>
-    /// See "What are differences between AssemblyVersion, AssemblyFileVersion and AssemblyInformationalVersion?":
-    /// https://stackoverflow.com/questions/64602/what-are-differences-between-assemblyversion-assemblyfileversion-and-assemblyin#answer-65062
+    /// For additional information about assembly and file versions, see
+    /// <see href="https://stackoverflow.com/questions/64602/what-are-differences-between-assemblyversion-assemblyfileversion-and-assemblyin#answer-65062"/>.
     /// </remarks>
     public static string? Version
     {
@@ -96,6 +110,13 @@ public static class AssemblyInfo
     /// <returns>
     /// Current assembly.
     /// </returns>
+    /// <remarks>
+    /// Assemblies are probed in the following order:
+    /// Assembly.GetEntryAssembly(), 
+    /// Assembly.GetCallingAssembly(), 
+    /// Assembly.GetExecutingAssembly(),
+    /// Assembly.GetAssembly(typeof(AssemblyInfo)).
+    /// </remarks>
     public static Assembly? GetAssembly()
     {
         Assembly? assembly = ((Assembly.GetEntryAssembly() 

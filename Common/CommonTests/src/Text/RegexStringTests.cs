@@ -1,10 +1,10 @@
-﻿using DotNetExtras.Common;
+﻿using DotNetExtras.Common.Text;
 
-namespace CommonLibTests.Text;
-public class RegexStringTests
+namespace CommonLibTests;
+public class TextTests
 {
     [Fact]
-    public void Guid()
+    public void Regex_Guid()
     {
         Assert.Matches(RegexString.Guid, "231CE3F7-9640-45AE-8C6F-06D329911DD9");
         Assert.Matches(RegexString.Guid, "231ce3f7-9640-45ae-8c6f-06d329911dd9");
@@ -27,7 +27,7 @@ public class RegexStringTests
     }
 
     [Fact]
-    public void EmailAddress()
+    public void Regex_EmailAddress()
     {
         Assert.Matches(RegexString.EmailAddress, "joe.doe@mail.com");
         Assert.Matches(RegexString.EmailAddress, "joe_doe@mail.com");

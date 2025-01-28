@@ -1,47 +1,47 @@
-using DotNetExtras.Common;
+using DotNetExtras.Common.Metadata;
 using System.Reflection;
 
-namespace CommonLibTests.Metadata;
+namespace CommonLibTests;
 
 public class AssemblyInfoTests
 {
     [Fact]
-    public void Company()
+    public void AssemblyInfo_Company()
     {
         string? company = AssemblyInfo.Company;
         Assert.Equal("Microsoft Corporation", company);
     }
 
     [Fact]
-    public void Copyright()
+    public void AssemblyInfo_Copyright()
     {
         string? copyright = AssemblyInfo.Copyright;
         Assert.Equal("© Microsoft Corporation. All rights reserved.", copyright);
     }
 
     [Fact]
-    public void Description()
+    public void AssemblyInfo_Description()
     {
         string? description = AssemblyInfo.Description;
         Assert.Null(description);
     }
 
     [Fact]
-    public void Product()
+    public void AssemblyInfo_Product()
     {
         string? product = AssemblyInfo.Product;
         Assert.Equal("testhost", product);
     }
 
     [Fact]
-    public void Title()
+    public void AssemblyInfo_Title()
     {
         string? title = AssemblyInfo.Title;
         Assert.Equal("testhost", title);
     }
 
     [Fact]
-    public void Version()
+    public void AssemblyInfo_Version()
     {
         string? version = AssemblyInfo.Version;
         Assert.NotNull(version);
@@ -49,7 +49,7 @@ public class AssemblyInfoTests
     }
 
     [Fact]
-    public void GetAssembly()
+    public void AssemblyInfo_GetAssembly()
     {
         var assembly = AssemblyInfo.GetAssembly();
 

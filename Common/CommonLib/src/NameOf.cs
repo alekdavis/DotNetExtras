@@ -5,8 +5,57 @@ using System.Text.Json;
 namespace DotNetExtras.Common;
 
 /// <summary>
-/// Utility methods for formatting type, object, class, and property names.
+/// Think of the <see cref="NameOf"/> class as the <c>nameof</c> expression on steroids.
+/// You can use the static <see cref="NameOf"/> methods to generate fully qualified or partial names of
+/// variables, types, or members (you can keep the original case or use the camelCase notation).
 /// </summary>
+/// <remarks>
+/// <para>
+/// When applying the <see cref="NameOf"/> methods to types, use it with the <c>nameof</c> expression.
+/// </para>
+/// <para>
+/// Question marks will be removed from names referencing nullable types.
+/// </para>
+/// </remarks>
+/// <example>
+/// <code>
+/// // PRINT: Class.Parent.ChildProp
+/// Console.WriteLine(NameOf.Full(nameof(Class.Parent.ChildProp)));
+/// 
+/// // PRINT: class.parent.childProp
+/// Console.WriteLine(NameOf.Full(nameof(Class.Parent.ChildProp), true));
+/// 
+/// // PRINT: object.Parent.ChildProp
+/// Console.WriteLine(NameOf.Full(object?.Parent?.ChildProp));
+/// 
+/// // PRINT: object.parent.childProp
+/// Console.WriteLine(NameOf.Full(object?.Parent?.ChildProp, true));
+/// 
+/// // PRINT: Parent.ChildProp
+/// Console.WriteLine(NameOf.Long(nameof(Class.Parent.ChildProp)));
+/// 
+/// // PRINT: parent.childProp
+/// Console.WriteLine(NameOf.Long(nameof(Class.Parent.ChildProp), true));
+/// 
+/// // PRINT: Parent.ChildProp
+/// Console.WriteLine(NameOf.Long(object?.Parent?.ChildProp));
+/// 
+/// // PRINT: parent.childProp
+/// Console.WriteLine(NameOf.Long(object?.Parent?.ChildProp, true));
+/// 
+/// // PRINT: ChildProp
+/// Console.WriteLine(NameOf.Short(nameof(Class.Parent.ChildProp)));
+/// 
+/// // PRINT: childProp
+/// Console.WriteLine(NameOf.Short(nameof(Class.Parent.ChildProp), true));
+/// 
+/// // PRINT: ChildProp
+/// Console.WriteLine(NameOf.Short(object?.Parent?.ChildProp));
+/// 
+/// // PRINT: childProp
+/// Console.WriteLine(NameOf.Short(object?.Parent?.ChildProp, true));
+/// </code>
+/// </example>
 public static class NameOf
 {
     #region Public methods
@@ -27,17 +76,17 @@ public static class NameOf
     /// </returns>
     /// <example>
     /// <code>
-    /// // Class.Parent?.ChildProp
-    /// Console.WriteLine(NameOf.Long(nameof(Class.Parent?.ChildProp)));
+    /// // PRINT: Class.Parent.ChildProp
+    /// Console.WriteLine(NameOf.Full(nameof(Class.Parent.ChildProp)));
     /// 
-    /// // class.parent?.childProp
-    /// Console.WriteLine(NameOf.Long(nameof(Class.Parent?.ChildProp), true));
+    /// // PRINT: class.parent.childProp
+    /// Console.WriteLine(NameOf.Full(nameof(Class.Parent.ChildProp), true));
     /// 
-    /// // object.Parent.ChildProp
-    /// Console.WriteLine(NameOf.Long(object.Parent?.ChildProp));
+    /// // PRINT: object.Parent.ChildProp
+    /// Console.WriteLine(NameOf.Full(object?.Parent?.ChildProp));
     /// 
-    /// // object.parent.childProp
-    /// Console.WriteLine(NameOf.Long(object.Parent?.ChildProp, true));
+    /// // PRINT: object.parent.childProp
+    /// Console.WriteLine(NameOf.Full(object?.Parent?.ChildProp, true));
     /// </code>
     /// </example>
     public static string Full
@@ -83,17 +132,17 @@ public static class NameOf
     /// </remarks>
     /// <example>
     /// <code>
-    /// // Parent?.ChildProp
-    /// Console.WriteLine(NameOf.Long(nameof(Class.Parent?.ChildProp)));
+    /// // PRINT: Parent.ChildProp
+    /// Console.WriteLine(NameOf.Long(nameof(Class.Parent.ChildProp)));
     /// 
-    /// // parent?.childProp
-    /// Console.WriteLine(NameOf.Long(nameof(Class.Parent?.ChildProp), true));
+    /// // PRINT: parent.childProp
+    /// Console.WriteLine(NameOf.Long(nameof(Class.Parent.ChildProp), true));
     /// 
-    /// // Parent.ChildProp
-    /// Console.WriteLine(NameOf.Long(object.Parent?.ChildProp));
+    /// // PRINT: Parent.ChildProp
+    /// Console.WriteLine(NameOf.Long(object?.Parent?.ChildProp));
     /// 
-    /// // parent.childProp
-    /// Console.WriteLine(NameOf.Long(object.Parent?.ChildProp, true));
+    /// // PRINT: parent.childProp
+    /// Console.WriteLine(NameOf.Long(object?.Parent?.ChildProp, true));
     /// </code>
     /// </example>
     public static string Long
@@ -121,17 +170,17 @@ public static class NameOf
     /// </returns>
     /// <example>
     /// <code>
-    /// // ChildProp
-    /// Console.WriteLine(NameOf.Short(nameof(Class.Parent?.ChildProp)));
+    /// // PRINT: ChildProp
+    /// Console.WriteLine(NameOf.Short(nameof(Class.Parent.ChildProp)));
     /// 
-    /// // childProp
-    /// Console.WriteLine(NameOf.Short(nameof(Class.Parent?.ChildProp), true));
+    /// // PRINT: childProp
+    /// Console.WriteLine(NameOf.Short(nameof(Class.Parent.ChildProp), true));
     /// 
-    /// // ChildProp
-    /// Console.WriteLine(NameOf.Short(object.Parent?.ChildProp));
+    /// // PRINT: ChildProp
+    /// Console.WriteLine(NameOf.Short(object?.Parent?.ChildProp));
     /// 
-    /// // childProp
-    /// Console.WriteLine(NameOf.Short(object.Parent?.ChildProp, true));
+    /// // PRINT: childProp
+    /// Console.WriteLine(NameOf.Short(object?.Parent?.ChildProp, true));
     /// </code>
     /// </example>
     public static string Short
@@ -183,6 +232,33 @@ public static class NameOf
     /// <returns>
     /// Shortened name.
     /// </returns>
+    /// <example>
+    /// <code>
+    /// // PRINT: Parent.ChildProp
+    /// Console.WriteLine(NameOf.Skip(nameof(Class.Parent.ChildProp), 1));
+    /// 
+    /// // PRINT: Class.Parent
+    /// Console.WriteLine(NameOf.Skip(nameof(Class.Parent.ChildProp), -1));
+    /// 
+    /// // PRINT: childProp
+    /// Console.WriteLine(NameOf.Skip(nameof(Class.Parent.ChildProp), 2, true));
+    /// 
+    /// // PRINT: class
+    /// Console.WriteLine(NameOf.Skip(nameof(Class.Parent.ChildProp), -2, true));
+    /// 
+    /// // PRINT: Parent.ChildProp
+    /// Console.WriteLine(NameOf.Skip(object.Parent?.ChildProp), 1);
+    /// 
+    /// // PRINT: object.Parent
+    /// Console.WriteLine(NameOf.Skip(object.Parent?.ChildProp), -1);
+    /// 
+    /// // PRINT: childProp
+    /// Console.WriteLine(NameOf.Skip(object.Parent?.ChildProp, 2, true));
+    /// 
+    /// // PRINT: object
+    /// Console.WriteLine(NameOf.Skip(object.Parent?.ChildProp, -2, true));
+    /// </code>
+    /// </example>
     public static string Skip
     (
         this object? caller,
@@ -253,6 +329,33 @@ public static class NameOf
     /// <returns>
     /// Shortened name.
     /// </returns>
+    /// <example>
+    /// <code>
+    /// // PRINT: Class
+    /// Console.WriteLine(NameOf.Keep(nameof(Class.Parent.ChildProp), 1));
+    /// 
+    /// // PRINT: ChildProp
+    /// Console.WriteLine(NameOf.Keep(nameof(Class.Parent.ChildProp), -1));
+    /// 
+    /// // PRINT: class.parent
+    /// Console.WriteLine(NameOf.Keep(nameof(Class.Parent.ChildProp), 2, true));
+    /// 
+    /// // PRINT: parent.childProp
+    /// Console.WriteLine(NameOf.Keep(nameof(Class.Parent.ChildProp), -2, true));
+    /// 
+    /// // PRINT: object
+    /// Console.WriteLine(NameOf.Keep(object.Parent?.ChildProp), 1);
+    /// 
+    /// // PRINT: ChildProp
+    /// Console.WriteLine(NameOf.Keep(object.Parent?.ChildProp), -1);
+    /// 
+    /// // PRINT: object.parent
+    /// Console.WriteLine(NameOf.Keep(object.Parent?.ChildProp, 2, true));
+    /// 
+    /// // PRINT: parent.childProp
+    /// Console.WriteLine(NameOf.Keep(object.Parent?.ChildProp, -2, true));
+    /// </code>
+    /// </example>
     public static string Keep
     (
         this object? caller,
