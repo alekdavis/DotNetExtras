@@ -140,7 +140,7 @@ public static class Hash
     /// <returns>
     /// True if the hash value matches the hash of the plain text string.
     /// </returns>
-    public static bool Verify
+    public static bool Validate
     (
         HashType hashType,
         string plainText,

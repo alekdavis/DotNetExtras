@@ -69,8 +69,8 @@ public class HashTests
     {
         string hashText = plainText.ToHash(hashType, saltLength);
 
-        Assert.True(Hash.Verify(hashType, plainText, hashText));
-        Assert.False(Hash.Verify(hashType, plainText + "a", hashText));
-        Assert.False(Hash.Verify(hashType, plainText, hashText + "34"));
+        Assert.True(Hash.Validate(hashType, plainText, hashText));
+        Assert.False(Hash.Validate(hashType, plainText + "a", hashText));
+        Assert.False(Hash.Validate(hashType, plainText, hashText + "34"));
     }
 }

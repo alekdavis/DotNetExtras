@@ -17,9 +17,9 @@ public class JwtTests
     {
         Jwt jwt = new(secret, tokenExpirationSeconds);
 
-        string token = jwt.GenerateToken(email);
+        string token = jwt.Generate(email);
 
-        ClaimsPrincipal principal = jwt.ValidateToken(token);
+        ClaimsPrincipal principal = jwt.Validate(token);
 
         Assert.NotNull(principal);
         Assert.Equal(email, principal.FindFirst(System.Security.Claims.ClaimTypes.Email)?.Value);
@@ -30,10 +30,10 @@ public class JwtTests
     {
         Jwt jwt = new("hello", 1);
 
-        string token = jwt.GenerateToken("joe.doe@sample.com");
+        string token = jwt.Generate("joe.doe@sample.com");
         Thread.Sleep(1001);
 
-        Assert.ThrowsAny<Exception>(() => jwt.ValidateToken(token));
+        Assert.ThrowsAny<Exception>(() => jwt.Validate(token));
     }
 
     [Fact]
@@ -42,7 +42,7 @@ public class JwtTests
         // ARRANGE
         Jwt jwt = new("hello", 900);
 
-        string token = jwt.GenerateToken("joe.doe@intel.com");
+        string token = jwt.Generate("joe.doe@intel.com");
 
         // JWT consists of 3 period separated parts.
         string[] tokenParts = token.Split('.');
@@ -55,9 +55,9 @@ public class JwtTests
 
         // ACT
         // ASSERT
-        Assert.ThrowsAny<Exception>(() => jwt.ValidateToken(token1));
-        Assert.ThrowsAny<Exception>(() => jwt.ValidateToken(token2));
-        Assert.ThrowsAny<Exception>(() => jwt.ValidateToken(token3));
-        Assert.ThrowsAny<Exception>(() => jwt.ValidateToken(token4));
+        Assert.ThrowsAny<Exception>(() => jwt.Validate(token1));
+        Assert.ThrowsAny<Exception>(() => jwt.Validate(token2));
+        Assert.ThrowsAny<Exception>(() => jwt.Validate(token3));
+        Assert.ThrowsAny<Exception>(() => jwt.Validate(token4));
     }
 }

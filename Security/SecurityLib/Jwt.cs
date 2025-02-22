@@ -40,7 +40,7 @@ public class Jwt
     /// <returns>
     /// Generated JWT.
     /// </returns>
-    public string GenerateToken
+    public string Generate
     (
         string emailAddress
     )
@@ -70,7 +70,7 @@ public class Jwt
     /// <returns>
     /// The <see cref="ClaimsPrincipal"/> object if the token is valid; otherwise, null.
     /// </returns>
-    public ClaimsPrincipal ValidateToken
+    public ClaimsPrincipal Validate
     (
         string token
     )
@@ -109,7 +109,7 @@ public class Jwt
         string input
     )
     {
-        ArgumentNullException.ThrowIfNullOrEmpty(nameof(input));
+        ArgumentNullException.ThrowIfNullOrEmpty(input);
 
         int minLength = 256 / 8;
 
