@@ -34,6 +34,39 @@ public static partial class Extensions
 		this Type type
     )
 	{
+		return
+			type.IsValueType ||
+			type.IsPrimitive ||
+			new Type[] { 
+				typeof(string),
+				typeof(DateTime),
+				typeof(DateTimeOffset),
+				typeof(TimeSpan),
+				typeof(Guid)
+			}.Contains(type) ||
+			Convert.GetTypeCode(type) != TypeCode.Object;
+    }
+
+    /// <summary>
+    /// Determine whether the specified type is a primitive type.
+    /// </summary>
+    /// <param name="type">
+    /// Data type.
+    /// </param>
+    /// <returns>
+    /// True if the specified type is a primitive type; otherwise, false.
+    /// </returns>
+    /// <remarks>
+    /// Adapted from 
+    /// <see href="https://github.com/Burtsev-Alexey/net-object-deep-copy/blob/master/ObjectExtensions.cs"/>
+    /// for object cloning.
+    /// </remarks>
+    public static bool IsPrimitive
+    (
+        this Type type
+    )
+    {
         return type == typeof(string) || (type.IsValueType && type.IsPrimitive);
-	}
+    }
 }
+

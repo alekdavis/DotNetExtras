@@ -32,7 +32,7 @@ public partial class ExtensionsTests
     [InlineData(typeof(Dictionary<string, string>), false)]
     [InlineData(typeof(object), false)]
     [InlineData(typeof(Models.Employee), false)]
-    public void Type_IsSimple
+    public void Type_IsPrimitive
     (
         Type type, 
         bool expected
@@ -70,7 +70,7 @@ public partial class ExtensionsTests
     [InlineData(typeof(Dictionary<string, string>), false)]
     [InlineData(typeof(object), false)]
     [InlineData(typeof(Models.Employee), false)]
-    public void Type_IsPrimitive
+    public void Type_IsSimple
     (
         Type type, 
         bool expected

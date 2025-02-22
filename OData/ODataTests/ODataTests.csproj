@@ -7,17 +7,7 @@
 
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
-    <AssemblyName>$(MSBuildProjectName)</AssemblyName>
-    <RootNamespace>$(MSBuildProjectName)</RootNamespace>
-    <PackageId />
-    <Title>$(AssemblyName)</Title>
-    <Authors>Alek Davis</Authors>
-    <Description>Unit tests.</Description>
-    <Copyright>© 2025 Alek Davis</Copyright>
-    <PackageProjectUrl>https://github.com/alekdavis/DotNetExtras.Common</PackageProjectUrl>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
-    <RepositoryUrl>https://github.com/alekdavis/DotNetExtras.git</RepositoryUrl>
-    <PackageTags>.net;utilities;helpers;library;classes;tools;toolbox;unit;tests;xunit</PackageTags>
+    <RootNamespace>ODataLibTests</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -25,7 +15,10 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="9.0.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.1" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
+    <PackageReference Include="System.Text.Json" Version="9.0.1" />
     <PackageReference Include="xunit" Version="2.9.3" />
     <PackageReference Include="xunit.runner.visualstudio" Version="3.0.1">
       <PrivateAssets>all</PrivateAssets>
@@ -34,18 +27,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ODataLib\ODataLib.csproj" />
+    <ProjectReference Include="..\Samples\ODataSampleModels\ODataSampleModels.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Using Include="Xunit" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="README.md">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\CommonLib\CommonLib.csproj" />
   </ItemGroup>
 
 </Project>
