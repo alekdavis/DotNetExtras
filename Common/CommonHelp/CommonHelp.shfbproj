@@ -33,9 +33,9 @@
     <DocumentationSources>
       <DocumentationSource sourceFile="..\CommonLib\CommonLib.csproj" />
     </DocumentationSources>
-    <HelpFileFormat>HtmlHelp1</HelpFileFormat>
+    <HelpFileFormat>Markdown</HelpFileFormat>
     <SyntaxFilters>C#</SyntaxFilters>
-    <PresentationStyle>VS2013</PresentationStyle>
+    <PresentationStyle>Markdown</PresentationStyle>
     <CleanIntermediates>True</CleanIntermediates>
     <KeepLogFile>False</KeepLogFile>
     <DisableCodeBlockComponent>False</DisableCodeBlockComponent>
@@ -54,16 +54,17 @@
     <Preliminary>False</Preliminary>
     <SdkLinkTarget>Blank</SdkLinkTarget>
     <NamespaceSummaries>
-        <NamespaceSummaryItem name="DotNetExtras.Common" isDocumented="True">Groups common classes and utilities.</NamespaceSummaryItem>
-        <NamespaceSummaryItem name="DotNetExtras.Common.Exceptions" isDocumented="True">Groups exception classes.</NamespaceSummaryItem>
-        <NamespaceSummaryItem name="DotNetExtras.Common.Extensions (Group)" isGroup="True" isDocumented="True">Groups classes implementing extension methods and related utilities.</NamespaceSummaryItem>
-        <NamespaceSummaryItem name="DotNetExtras.Common.Extensions" isDocumented="True">Groups classes implementing extension methods.</NamespaceSummaryItem>
-        <NamespaceSummaryItem name="DotNetExtras.Common.Extensions.Utilities" isDocumented="True">Groups utility classes intended for internal use only.</NamespaceSummaryItem>
-        <NamespaceSummaryItem name="DotNetExtras.Common.Metadata" isDocumented="True">Groups classes implementing functionality around metadata, such as attributes, assembly information, and so on.</NamespaceSummaryItem>
-        <NamespaceSummaryItem name="DotNetExtras.Common.Text" isDocumented="True">Groups frquesntly used text values and functions, such as regular expressions for email and GUIDs.</NamespaceSummaryItem>
-        <NamespaceSummaryItem name="DotNetExtras.Common (Group)" isGroup="True" isDocumented="True">Groups common classes and utilities.</NamespaceSummaryItem>
-        <NamespaceSummaryItem name="DotNetExtras.Common.Metadata (Group)" isGroup="True" isDocumented="True">Groups classes implementing functionality around metadata, such as attributes, assembly information, and so on.</NamespaceSummaryItem>
-        <NamespaceSummaryItem name="DotNetExtras.Common.Metadata.Attributes" isDocumented="True">Groups custom attribute classes.</NamespaceSummaryItem></NamespaceSummaries>
+      <NamespaceSummaryItem name="DotNetExtras.Common" isDocumented="True">Groups common classes and utilities.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="DotNetExtras.Common.Exceptions" isDocumented="True">Groups exception classes.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="DotNetExtras.Common.Extensions (Group)" isGroup="True" isDocumented="True">Groups classes implementing extension methods and related utilities.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="DotNetExtras.Common.Extensions" isDocumented="True">Groups classes implementing extension methods.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="DotNetExtras.Common.Extensions.Utilities" isDocumented="True">Groups utility classes intended for internal use only.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="DotNetExtras.Common.Metadata" isDocumented="True">Groups classes implementing functionality around metadata, such as attributes, assembly information, and so on.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="DotNetExtras.Common.Text" isDocumented="True">Groups frquesntly used text values and functions, such as regular expressions for email and GUIDs.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="DotNetExtras.Common (Group)" isGroup="True" isDocumented="True">Groups common classes and utilities.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="DotNetExtras.Common.Metadata (Group)" isGroup="True" isDocumented="True">Groups classes implementing functionality around metadata, such as attributes, assembly information, and so on.</NamespaceSummaryItem>
+      <NamespaceSummaryItem name="DotNetExtras.Common.Metadata.Attributes" isDocumented="True">Groups custom attribute classes.</NamespaceSummaryItem>
+    </NamespaceSummaries>
     <HtmlSdkLinkType>Msdn</HtmlSdkLinkType>
     <BinaryTOC>True</BinaryTOC>
     <IncludeFavorites>False</IncludeFavorites>
