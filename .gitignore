@@ -462,3 +462,6 @@ EmailTemplates/Output/*
 EmailTemplates/Input.*/*
 EmailTemplates/Temp/*
 EmailTemplates/TRANSLATIONS/*
+
+# SandCastle temp files
+Help/Working/
