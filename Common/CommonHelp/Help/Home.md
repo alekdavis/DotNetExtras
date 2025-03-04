@@ -1,8 +1,0 @@
-# Introduction
-
-Required introduction
-
-
-## Optional section title
-
-Add one or more sections with content
