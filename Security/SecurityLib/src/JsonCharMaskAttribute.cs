@@ -2,7 +2,8 @@
 
 namespace DotNetExtras.Security;
 /// <summary>
-/// Allows applying masks to protect sensitive string object properties.
+/// Applies a character mask to a string property 
+/// during JSON serialization using `System.Text.Json` (STJ).
 /// </summary>
 [AttributeUsage(AttributeTargets.Property)]
 public class JsonCharMaskAttribute: JsonConverterAttribute
@@ -11,6 +12,18 @@ public class JsonCharMaskAttribute: JsonConverterAttribute
     private readonly int _unmaskedCharsStart;
     private readonly int _unmaskedCharsEnd;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="JsonCharMaskAttribute"/> class.
+    /// </summary>
+    /// <param name="maskChar">
+    /// Mask character.
+    /// </param>
+    /// <param name="unmaskedCharsStart">
+    /// Number characters to be left unmasked at the start of the string.
+    /// </param>
+    /// <param name="unmaskedCharsEnd">
+    /// Number characters to be left unmasked at the end of the string.
+    /// </param>
     public JsonCharMaskAttribute
     (
         char maskChar = '*',
@@ -23,6 +36,15 @@ public class JsonCharMaskAttribute: JsonConverterAttribute
         _unmaskedCharsEnd = unmaskedCharsEnd;
     }
 
+    /// <summary>
+    /// Sets a converter that will apply a character mask to a decorated string property.
+    /// </summary>
+    /// <param name="type">
+    /// Data type to convert (<see cref="string"/> only).
+    /// </param>
+    /// <returns>
+    /// Character mask converter.
+    /// </returns>
     public override JsonConverter CreateConverter
     (
         Type type

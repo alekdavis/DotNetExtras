@@ -19,7 +19,7 @@
     <!-- SHFB properties -->
     <FrameworkVersion>.NET Core/.NET Standard/.NET 5.0+</FrameworkVersion>
     <OutputPath>.\Help\</OutputPath>
-    <HtmlHelpName>DotNetExtras.Help</HtmlHelpName>
+    <HtmlHelpName>DotNetExtrasHelp</HtmlHelpName>
     <Language>en-US</Language>
     <TransformComponentArguments>
       <Argument Key="logoFile" Value="Help.png" xmlns="" />
@@ -35,6 +35,7 @@
       <DocumentationSource sourceFile="..\Mail\MailLib\MailLib.csproj" />
       <DocumentationSource sourceFile="..\OData\OdataLib\ODataLib.csproj" />
       <DocumentationSource sourceFile="..\Security\SecurityLib\SecurityLib.csproj" />
+      <DocumentationSource sourceFile="..\Testing\TestingLib\TestingLib.csproj" />
     </DocumentationSources>
     <HelpFileFormat>HtmlHelp1</HelpFileFormat>
     <SyntaxFilters>C#</SyntaxFilters>
@@ -57,19 +58,19 @@
     <SdkLinkTarget>Blank</SdkLinkTarget>
     <NamespaceSummaries>
       <NamespaceSummaryItem name="DotNetExtras (Group)" isGroup="True" isDocumented="True">Groups all namespaces.</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="DotNetExtras.Common" isDocumented="True">Groups common classes and utilities.</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="DotNetExtras.Common.Exceptions" isDocumented="True">Groups exception classes.</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="DotNetExtras.Common.Extensions (Group)" isGroup="True" isDocumented="True">Groups classes implementing extension methods and related utilities.</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="DotNetExtras.Common.Extensions" isDocumented="True">Groups classes implementing extension methods.</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="DotNetExtras.Common.Extensions.Utilities" isDocumented="True">Groups utility classes intended for internal use only.</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="DotNetExtras.Common.Metadata" isDocumented="True">Groups classes implementing functionality around metadata, such as attributes, assembly information, and so on.</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="DotNetExtras.Common.Text" isDocumented="True">Groups frequently used text values and functions, such as regular expressions for email and GUIDs.</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="DotNetExtras.Common (Group)" isGroup="True" isDocumented="True">Groups common classes and utilities.</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="DotNetExtras.Common.Metadata (Group)" isGroup="True" isDocumented="True">Groups classes implementing functionality around metadata, such as attributes, assembly information, and so on.</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="DotNetExtras.Common.Metadata.Attributes" isDocumented="True">Groups custom attribute classes.</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="DotNetExtras.Mail" isDocumented="True" xmlns="">Groups classes related to mail functionality.</NamespaceSummaryItem>
-      <NamespaceSummaryItem name="DotNetExtras.OData" isDocumented="True" xmlns="">Groups OData-specific classes and utilities.</NamespaceSummaryItem>
-    </NamespaceSummaries>
+<NamespaceSummaryItem name="DotNetExtras.Common" isDocumented="True">Groups common classes and utilities.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="DotNetExtras.Common.Exceptions" isDocumented="True">Groups exception classes.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="DotNetExtras.Common.Extensions (Group)" isGroup="True" isDocumented="True">Groups classes implementing extension methods and related utilities.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="DotNetExtras.Common.Extensions" isDocumented="True">Groups classes implementing extension methods.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="DotNetExtras.Common.Extensions.Utilities" isDocumented="True">Groups utility classes intended for internal use only.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="DotNetExtras.Common.Metadata" isDocumented="True">Groups classes implementing functionality around metadata, such as attributes, assembly information, and so on.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="DotNetExtras.Common.Text" isDocumented="True">Groups frequently used text values and functions, such as regular expressions for email and GUIDs.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="DotNetExtras.Common (Group)" isGroup="True" isDocumented="True">Groups common classes and utilities.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="DotNetExtras.Common.Metadata (Group)" isGroup="True" isDocumented="True">Groups classes implementing functionality around metadata, such as attributes, assembly information, and so on.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="DotNetExtras.Common.Metadata.Attributes" isDocumented="True">Groups custom attribute classes.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="DotNetExtras.Mail" isDocumented="True">Groups classes related to mail functionality.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="DotNetExtras.OData" isDocumented="True">Groups OData-specific classes and utilities.</NamespaceSummaryItem>
+<NamespaceSummaryItem name="DotNetExtras.Security" isDocumented="True">Groups functions related to security, such as encryption, hashing, password generation, and so on.</NamespaceSummaryItem></NamespaceSummaries>
     <HtmlSdkLinkType>Msdn</HtmlSdkLinkType>
     <BinaryTOC>True</BinaryTOC>
     <IncludeFavorites>False</IncludeFavorites>
@@ -85,13 +86,13 @@
     <PlugInConfigurations>
       <PlugInConfig id="Assembly Binding Redirection" enabled="True" xmlns="">
         <configuration useGAC="false">
-  <assemblyBinding />
-  <ignoreIfUnresolved>
-    <assemblyIdentity name="BusinessObjects.Licensing.KeycodeDecoder" />
-    <assemblyIdentity name="Microsoft.VisualStudio.TestTools.UITest.Playback" />
-    <assemblyIdentity name="Microsoft.OData.Edm" />
-  </ignoreIfUnresolved>
-</configuration>
+          <assemblyBinding />
+          <ignoreIfUnresolved>
+            <assemblyIdentity name="BusinessObjects.Licensing.KeycodeDecoder" />
+            <assemblyIdentity name="Microsoft.VisualStudio.TestTools.UITest.Playback" />
+            <assemblyIdentity name="Microsoft.OData.Edm" />
+          </ignoreIfUnresolved>
+        </configuration>
       </PlugInConfig>
     </PlugInConfigurations>
   </PropertyGroup>

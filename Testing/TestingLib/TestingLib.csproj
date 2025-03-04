@@ -4,27 +4,23 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <AssemblyName>DotNetExtras.Security</AssemblyName>
-    <RootNamespace>DotNetExtras.Security</RootNamespace>
+    <AssemblyName>DotNetExtras.Testing</AssemblyName>
+    <RootNamespace>DotNetExtras.Testing</RootNamespace>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>$(AssemblyName)</Title>
     <Version>0.0.0</Version>
     <Authors>Alek Davis</Authors>
-    <Description>.NET Core library implementing security functions.</Description>
+    <Description>.NET Core library implementing unit testing helper functions.</Description>
     <Copyright>© 2025 Alek Davis</Copyright>
-    <PackageProjectUrl>https://github.com/alekdavis/DotNetExtras/Security</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/alekdavis/DotNetExtras/Testing</PackageProjectUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/alekdavis/DotNetExtras.git</RepositoryUrl>
-    <PackageTags>.net;utilities;helpers;library;classes;security;encryption;hashing;cryptography;</PackageTags>
-    <Title>$(AssemblyName)</Title>
+    <PackageTags>.net;utilities;helpers;library;classes;unit tests;testing;xunit;</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.5.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="README.md">
+    <None Include="..\README.md">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>

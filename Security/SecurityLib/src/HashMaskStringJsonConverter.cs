@@ -3,12 +3,28 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace DotNetExtras.Security;
+/// <summary>
+/// Masks a string property with a specified hash value
+/// during JSON serialization using `System.Text.Json` (STJ).
+/// </summary>
 public class HashMaskStringJsonConverter: JsonConverter<string>
 {
     private readonly HashType _hashType;
     private readonly int _saltLength;
     private readonly bool _saveSalt;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="HashMaskStringJsonConverter"/> class.
+    /// </summary>
+    /// <param name="hashType">
+    /// Hash algorithm.
+    /// </param>
+    /// <param name="saltLength">
+    /// Length of the optional random salt to be generated.
+    /// </param>
+    /// <param name="saveSalt">
+    /// If `true`, the salt will be added to the beginning of the hash string.
+    /// </param>
     public HashMaskStringJsonConverter
     (
         HashType hashType = HashType.SHA256,
@@ -21,6 +37,21 @@ public class HashMaskStringJsonConverter: JsonConverter<string>
         _saveSalt = saveSalt;
     }
 
+    /// <summary>
+    /// Reads and converts the JSON to type <see cref="string"/>.
+    /// </summary>
+    /// <param name="reader">
+    /// UTF-8 encoded text reader.
+    /// </param>
+    /// <param name="typeToConvert">
+    /// Data type to convert (<see cref="string"/> only).
+    /// </param>
+    /// <param name="options">
+    /// JSON serialization options.
+    /// </param>
+    /// <returns>
+    /// Read string value.
+    /// </returns>
     public override string? Read
     (
         ref Utf8JsonReader reader, 
@@ -31,6 +62,18 @@ public class HashMaskStringJsonConverter: JsonConverter<string>
         return reader.GetString();
     }
 
+    /// <summary>
+    /// Writes the masked string value to the JSON element.
+    /// </summary>
+    /// <param name="writer">
+    /// UTF-8 encoded text writer.
+    /// </param>
+    /// <param name="value">
+    /// String value to be masked.
+    /// </param>
+    /// <param name="options">
+    /// JSON serialization options.
+    /// </param>
     public override void Write
     (
         Utf8JsonWriter writer, 

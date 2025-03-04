@@ -9,6 +9,12 @@ public class JsonLiteralMaskAttribute: JsonConverterAttribute
 {
     private readonly string? _maskLiteral;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="JsonLiteralMaskAttribute"/> class.
+    /// </summary>
+    /// <param name="maskLiteral">
+    /// Literal string value that will replace the string property value (can be `null`).
+    /// </param>
     public JsonLiteralMaskAttribute
     (
         string? maskLiteral = null
@@ -17,6 +23,15 @@ public class JsonLiteralMaskAttribute: JsonConverterAttribute
         _maskLiteral = maskLiteral;
     }
 
+    /// <summary>
+    /// Sets a converter that will apply a literal string mask to a decorated string property.
+    /// </summary>
+    /// <param name="type">
+    /// Data type to convert (<see cref="string"/> only).
+    /// </param>
+    /// <returns>
+    /// Character mask converter.
+    /// </returns>
     public override JsonConverter CreateConverter
     (
         Type type

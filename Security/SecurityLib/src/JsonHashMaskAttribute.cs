@@ -2,7 +2,8 @@
 
 namespace DotNetExtras.Security;
 /// <summary>
-/// Allows applying masks to protect sensitive string object properties.
+/// Applies a hash mask to a string property 
+/// during JSON serialization using `System.Text.Json` (STJ).
 /// </summary>
 [AttributeUsage(AttributeTargets.Property)]
 public class JsonHashMaskAttribute: JsonConverterAttribute
@@ -11,6 +12,18 @@ public class JsonHashMaskAttribute: JsonConverterAttribute
     private readonly int _saltLength;
     private readonly bool _saveSalt;
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="JsonHashMaskAttribute"/> class.
+    /// </summary>
+    /// <param name="hashType">
+    /// Hash algorithm.
+    /// </param>
+    /// <param name="saltLength">
+    /// Length of the optional random salt to be generated.
+    /// </param>
+    /// <param name="saveSalt">
+    /// If `true`, the salt will be added to the beginning of the hash string.
+    /// </param>
     public JsonHashMaskAttribute
     (
         HashType hashType = HashType.SHA256,
@@ -23,6 +36,15 @@ public class JsonHashMaskAttribute: JsonConverterAttribute
         _saveSalt = saveSalt;
     }
 
+    /// <summary>
+    /// Sets a converter that will apply a hash mask to a decorated string property.
+    /// </summary>
+    /// <param name="type">
+    /// Data type to convert (<see cref="string"/> only).
+    /// </param>
+    /// <returns>
+    /// Character mask converter.
+    /// </returns>
     public override JsonConverter CreateConverter
     (
         Type type
